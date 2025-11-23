@@ -52,29 +52,42 @@ const Dashboard = ({ onLogout, onNavigate }) => {
         <div className="left-panel">
           <div className="chart-container">
             <h3 className="chart-title">ยอดขายรายวัน (บาท)</h3>
-            <div className="custom-line-chart">
+            <div className="chart-wrapper">
               <div className="chart-y-axis">
-                <div className="y-axis-label">{maxSales}</div>
-                <div className="y-axis-label">{Math.round(maxSales * 0.75)}</div>
-                <div className="y-axis-label">{Math.round(maxSales * 0.5)}</div>
-                <div className="y-axis-label">{Math.round(maxSales * 0.25)}</div>
+                <div className="y-axis-label">{maxSales.toLocaleString()}</div>
+                <div className="y-axis-label">{Math.round(maxSales * 0.75).toLocaleString()}</div>
+                <div className="y-axis-label">{Math.round(maxSales * 0.5).toLocaleString()}</div>
+                <div className="y-axis-label">{Math.round(maxSales * 0.25).toLocaleString()}</div>
                 <div className="y-axis-label">0</div>
               </div>
-              <div className="chart-bars">
-                {dailySalesData.map((item, index) => (
-                  <div key={index} className="chart-bar-container">
-                    <div 
-                      className="chart-bar"
-                      style={{ 
-                        height: `${(item.ยอดขาย / maxSales) * 100}%` 
-                      }}
-                      title={`${item.day}: ${item.ยอดขาย.toLocaleString()} บาท`}
-                    >
-                      <div className="bar-value">{item.ยอดขาย.toLocaleString()}</div>
+              
+              <div className="chart-area">
+                <div className="chart-grid">
+                  {/* เส้นกริดแนวนอน */}
+                  <div className="grid-line"></div>
+                  <div className="grid-line"></div>
+                  <div className="grid-line"></div>
+                  <div className="grid-line"></div>
+                </div>
+                
+                <div className="chart-bars">
+                  {dailySalesData.map((item, index) => (
+                    <div key={index} className="chart-bar-container">
+                      <div className="bar-value-display">
+                        {item.ยอดขาย.toLocaleString()}
+                      </div>
+                      <div 
+                        className="chart-bar"
+                        style={{ 
+                          height: `${(item.ยอดขาย / maxSales) * 80}%` 
+                        }}
+                      >
+                        <div className="bar-hover-effect"></div>
+                      </div>
+                      <div className="bar-label">{item.day}</div>
                     </div>
-                    <div className="bar-label">{item.day}</div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>

@@ -24,6 +24,12 @@ const Login = ({ onLogin }) => {
   return (
     <div className="login-page">
       <div className="login-box">
+        {/* เพิ่ม LOGO และหัวข้อ */}
+        <div className="login-header">
+          <div className="logo">🛒</div>
+          <h1 className="system-title">POS System</h1>
+        </div>
+
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <div className="label">Email</div>
@@ -33,6 +39,7 @@ const Login = ({ onLogin }) => {
               value={formData.email}
               onChange={handleChange}
               className="input-field"
+              placeholder="กรอกอีเมลของคุณ"
             />
           </div>
           
@@ -44,19 +51,14 @@ const Login = ({ onLogin }) => {
               value={formData.password}
               onChange={handleChange}
               className="input-field"
+              placeholder="กรอกรหัสผ่าน"
             />
           </div>
           
           <button type="submit" className="login-button">
-            Log in
+            เข้าสู่ระบบ
           </button>
         </form>
-        
-        <div className="links">
-          <span className="link-text">sign up</span>
-          <span className="divider">|</span>
-          <span className="link-text">Forgot Password</span>
-        </div>
       </div>
     </div>
   );
